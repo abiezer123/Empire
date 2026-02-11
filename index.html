@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+            background: #f7f8fc;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: #8b0000;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #8b0000;
+        }
+
+        section {
+            padding: 100px 40px;
+            min-height: 100vh;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, #8b0000, #ff4d4d);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-right: 10px;
+            background: white;
+            color: #8b0000;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #111;
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                display: none;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">EMPIRE</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav id="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>Open</h1>
+            <p></p>
+            <button class="btn" id="recordBtn">Record</button>
+            <button class="btn" id="attendanceBtn">Attendance</button>
+        </div>
+    </section>
+
+    <div id="loadingModal" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#111;
+color:white;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+        <div style="
+width:60px;
+height:60px;
+border:6px solid #444;
+border-top:6px solid #ff4d4d;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+"></div>
+
+        <h2 id="loadingText">Starting Empire Engine...</h2>
+
+    </div>
+
+
+    <section id="about">
+        <h2>About Empire</h2>
+        <p>hhjhjhkhkjhjkhjk</p>
+    </section>
+
+    <section id="features">
+        <h2>Features</h2>
+        <div class="card-container">
+            <div class="card" onclick="showFeature('Progress Tracking')">
+                <h3>Progress Tracking</h3>
+                <p>Monitor your daily improvements.</p>
+            </div>
+
+            <div class="card" onclick="showFeature('Workout Planner')">
+                <h3>Workout Planner</h3>
+                <p>Create custom workout plans.</p>
+            </div>
+
+            <div class="card" onclick="showFeature('Analytics Dashboard')">
+                <h3>Analytics</h3>
+                <p>Visualize your growth data.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: empire@example.com</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Empire App</p>
+    </footer>
+
+    <script>
+
+        const recordLink = "https://finance-0q4d.onrender.com";
+        const attendanceLink = "https://emp-1-s88f.onrender.com";
+
+        /* ============================
+           🟢 AUTO WAKE ON PAGE LOAD
+        ============================ */
+        window.addEventListener("load", () => {
+            wakeServer(attendanceLink);
+            wakeServer(recordLink);
+        });
+
+        /* ============================
+           🔁 WAKE SERVER SILENTLY
+        ============================ */
+        function wakeServer(url) {
+            fetch(url, { mode: "no-cors" }).catch(() => { });
+        }
+
+        /* FUN LOADING MESSAGES */
+        const messages = [
+            "☕ Giving server coffee...",
+            "🔥 Warming up Empire engine...",
+            "📡 Connecting to Render cloud...",
+            "⚙️ Spinning up backend...",
+            "🚀 Launching system..."
+        ];
+
+        let msgIndex = 0;
+
+        setInterval(() => {
+            const text = document.getElementById("loadingText");
+            if (text) {
+                text.innerText = messages[msgIndex++ % messages.length];
+            }
+        }, 2500);
+
+        /* OPEN SERVICE */
+        function openService(url) {
+
+            document.getElementById("loadingModal").style.display = "flex";
+
+            wakeServer(url);
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 6000);
+        }
+
+        /* BUTTON EVENTS */
+        document.getElementById("recordBtn")
+            .addEventListener("click", () => openService(recordLink));
+
+        document.getElementById("attendanceBtn")
+            .addEventListener("click", () => openService(attendanceLink));
+
+        function toggleMenu() {
+            document.getElementById("nav").classList.toggle("show");
+        }
+
+        /* ============================
+           🎭 FEATURE CLICK
+        ============================ */
+        function showFeature(name) {
+            alert(name + " feature clicked!");
+        }
+
+        /* ============================
+           📍 ACTIVE NAV SCROLL
+        ============================ */
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove("active");
+                if (a.getAttribute("href") === "#" + current) {
+                    a.classList.add("active");
+                }
+            });
+        });
+
+    </script>
+
+
+</body>
+
+</html>
